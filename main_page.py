@@ -31,10 +31,23 @@ def mainPage(status):
             [
                 sg.Text('', key="result",font=('メイリオ',20)),
             ],
-        ], size=(800, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+        ], size=(400, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
 
-    frame2 = sg.Frame('登録情報', 
+    frame2 = sg.Frame("今日のスコア",
+        [
+            #Score
+            [
+                sg.Text('Score: ', font=('メイリオ',30),key="score")
+            ],
+            #total calorie
+            [
+                sg.Text('消費カロリー: ', key="total_calorie",font=('メイリオ',30)),
+            ],
+        ], size=(400, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+    )
+
+    frame3 = sg.Frame('登録情報', 
     [
         [
             sg.Text("名前: " + status.name, font=('メイリオ',20))
@@ -51,8 +64,8 @@ def mainPage(status):
         [
             sg.Text("体重: " + status.weight + " kg", font=('メイリオ',20))
         ],
-    ], size=(300,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+    ], size=(200,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
-    layout =  [[frame1, frame2]]
+    layout =  [[frame1, frame2, frame3]]
     
     return sg.Window("カロリー計算", layout, finalize=True)

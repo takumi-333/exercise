@@ -1,8 +1,10 @@
 import PySimpleGUI as sg
+import math
 from main_page import mainPage
 from sign_up_page import signUpPage
 from calc_calorie import calc_calorie
 from log_background import log_data
+from calorieScore import CalorieScore
 
 def handleTime(hour, minute):
     time = float(hour) + float(minute)/60
@@ -60,15 +62,12 @@ def main():
         elif event == "-enroll-":
             if not values["input_old"].isdigit():
                 window["input_old"].Update('')
-                window["inst_old"].Update('年齢を入力してください(整数じゃなければいけません)')
                 continue
             elif not values["input_height"].isdigit():
                 window["input_height"].Update('')
-                window["inst_height"].Update('年齢を入力してください(整数じゃなければいけません)')
                 continue
             elif not values["input_weight"].isdigit():
                 window["input_weight"].Update('')
-                window["inst_weight"].Update('年齢を入力してください(整数じゃなければいけません)')
                 continue
             status.set(values)
             window.close()
@@ -92,17 +91,21 @@ def main():
             float(status.weight))
 
             #ログに格納
-            score = 10
-            logData.store_data(calorie, score)
+            goal = 1000
+            logData.store_data(calorie)
+            score = CalorieScore(goal, logData.total_cal)
+
             log_str = ""
             for d in logData.cal_data:
-                log_str = log_str+ str(d[0]) + " kcal" + "  score: " + str(d[1]) + "\n"
+                log_str = log_str+ str(d) + " kcal\n"
             window["input_METs"].Update('')
             window["input_hour"].Update('')
             window["input_minute"].Update('')
             window["inst_time"].Update('運動時間を入力してください')
             window["inst_METs"].Update('運動強度(METs)を数値で入力してください')
             window["result"].Update(log_str)
+            window["score"].Update("スコア: " + str(score))
+            window["total_calorie"].Update('消費カロリー: ' + str(math.floor(logData.total_cal*10)/10) + "kcal")
     window.close()
 
 if __name__ == "__main__":
