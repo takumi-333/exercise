@@ -139,6 +139,12 @@ def main():
             print('exit')
             break
         elif event == "enroll":
+
+
+            if not values["input_old"].isdigit():
+                # 入力された値が数字のみから構成されている場合
+                continue
+
             status.set(values)
             window.close()
             window = caloriePage()
