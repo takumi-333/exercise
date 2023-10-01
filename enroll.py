@@ -100,7 +100,11 @@ def caloriePage():
                 sg.Text("時間")
             ],
             [
-                sg.Text("名前" + status.name)
+                sg.Text("名前" + status.name),
+                sg.Text("年齢" + status.old),
+                sg.Text("性別" + status.gender),
+                sg.Text("身長" + status.height),
+                sg.Text("体重" + status.weight),
             ]
         ], size=(1000, 700)
     )
@@ -108,7 +112,6 @@ def caloriePage():
     layout =  [[frame1]]
     
     return sg.Window("カロリー計算", layout, finalize=True)
-
 
 def main():
 
@@ -142,11 +145,7 @@ def main():
             status.set(values)
             window.close()
             window = caloriePage()
-        
-
-
     window.close()
-
 
 if __name__ == "__main__":
     main()
