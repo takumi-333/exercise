@@ -42,11 +42,11 @@ def mainPage(status):
             ],
             #Score
             [
-                sg.Text('Score: ', font=('メイリオ',30),key="score")
+                sg.Text('Score: 0', font=('メイリオ',30),key="score")
             ],
             #total calorie
             [
-                sg.Text('消費カロリー: ', key="total_calorie",font=('メイリオ',30)),
+                sg.Text('消費カロリー: 0 Kcal', key="total_calorie",font=('メイリオ',30)),
             ],
         ], size=(400, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
