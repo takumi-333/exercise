@@ -10,7 +10,7 @@ def signUpPage():
             ],
             [
                 sg.Text("名前"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('デフォルト値', key='-INPUTTEXT-', enable_events=True,), 
             ],
             #性別入力
             [
@@ -18,7 +18,8 @@ def signUpPage():
             ],
             [
                 sg.Text("性別"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                #sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.Combo(["男性","女性"],default_value="選択してください", size=(30,1))
             ],
             #年齢入力
             [
@@ -90,7 +91,7 @@ def caloriePage():
 def main():
 
     #先程確認して決めたテーマカラーを設定
-    sg.theme('DarkBlue')
+    sg.theme('BlueMono')
 
     """
     ・sg.Imageで画像部品をのせられる
