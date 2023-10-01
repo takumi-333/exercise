@@ -104,7 +104,7 @@ def main():
             window["inst_time"].Update('運動時間を入力してください')
             window["inst_METs"].Update('運動強度(METs)を数値で入力してください')
             window["result"].Update(log_str)
-            window["score"].Update("スコア: " + str(score))
+            window["score"].Update("Score: " + str(score))
             window["total_calorie"].Update('消費カロリー: ' + str(math.floor(logData.total_cal*10)/10) + "kcal")
     window.close()
 
