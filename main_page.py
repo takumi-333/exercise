@@ -72,4 +72,4 @@ def mainPage(status):
     )
     layout =  [[frame1, frame2, frame3]]
     
-    return sg.Window("カロリー計算", layout, finalize=True)
+    return sg.Window("カロリー計算", layout, finalize=True, resizable=True)
