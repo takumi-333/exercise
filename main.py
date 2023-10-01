@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from main_page import mainPage
 from sign_up_page import signUpPage
 from calc_calorie import calc_calorie
+from log_background import log_data
 
 def handleTime(hour, minute):
     time = float(hour) + float(minute)/60
@@ -26,6 +27,7 @@ class Status():
         self.weight = values["input_weight"]
 
 status = Status()
+logData = log_data()
 
 def main():
 
@@ -88,11 +90,16 @@ def main():
             calorie = calc_calorie(float(values["input_METs"]),
             float(handleTime(values["input_hour"],values["input_minute"])),
             float(status.weight))
-
+            logData.store_data(calorie)
+            cal_str = ""
+            for cal in logData.cal_data:
+                cal_str = cal_str + str(cal) + " kcal\n"
             window["input_METs"].Update('')
             window["input_hour"].Update('')
             window["input_minute"].Update('')
-            window["result"].Update(str(calorie) + ' kcal')
+            window["inst_time"].Update('運動時間を入力してください')
+            window["inst_METs"].Update('運動強度(METs)を数値で入力してください')
+            window["result"].Update(cal_str)
     window.close()
 
 if __name__ == "__main__":

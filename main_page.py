@@ -29,9 +29,9 @@ def mainPage(status):
             ],
             #計算結果
             [
-                sg.Text('', key="result"),
+                sg.Text('', key="result",font=('メイリオ',20)),
             ],
-        ], size=(500, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+        ], size=(800, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
 
     frame2 = sg.Frame('登録情報', 
@@ -40,18 +40,18 @@ def mainPage(status):
             sg.Text("名前: " + status.name, font=('メイリオ',20))
         ],
         [
-            sg.Text("年齢: " + status.old, font=('メイリオ',20))
+            sg.Text("年齢: " + status.old + " 歳", font=('メイリオ',20))
         ],
         [
             sg.Text("性別: " + status.gender, font=('メイリオ',20))
         ],
         [
-            sg.Text("身長: " + status.height, font=('メイリオ',20))
+            sg.Text("身長: " + status.height + " cm", font=('メイリオ',20))
         ],
         [
-            sg.Text("体重: " + status.weight, font=('メイリオ',20))
+            sg.Text("体重: " + status.weight + " kg", font=('メイリオ',20))
         ],
-    ], size=(500,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+    ], size=(300,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
     layout =  [[frame1, frame2]]
     
