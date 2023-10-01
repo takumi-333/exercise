@@ -42,7 +42,7 @@ def signUpPage():
             ],
             #年齢入力
             [
-                sg.Text('年齢を入力してください', font=('メイリオ',12))
+                sg.Text('年齢を入力してください', font=('メイリオ',12), key="inst_old")
             ],
             [
                 sg.Text("年齢"),
@@ -51,7 +51,7 @@ def signUpPage():
             ],
             #身長入力
             [
-                sg.Text('身長を入力してください', font=('メイリオ',12))
+                sg.Text('身長を入力してください', font=('メイリオ',12), key="inst_height")
             ],
             [
                 sg.Text("身長"),
@@ -60,7 +60,7 @@ def signUpPage():
             ],
             #体重入力
             [
-                sg.Text('体重を入力してください', font=('メイリオ',12))
+                sg.Text('体重を入力してください', font=('メイリオ',12), key="inst_weight")
             ],
             [
                 sg.Text("体重"),
@@ -142,12 +142,18 @@ def main():
             print('exit')
             break
         elif event == "enroll":
-
-
             if not values["input_old"].isdigit():
-                # 入力された値が数字のみから構成されている場合
+                window["input_old"].Update('')
+                window["inst_old"].Update('年齢を入力してください(整数じゃなければいけません)')
                 continue
-
+            elif not values["input_height"].isdigit():
+                window["input_height"].Update('')
+                window["inst_height"].Update('年齢を入力してください(整数じゃなければいけません)')
+                continue
+            elif not values["input_weight"].isdigit():
+                window["input_weight"].Update('')
+                window["inst_weight"].Update('年齢を入力してください(整数じゃなければいけません)')
+                continue
             status.set(values)
             window.close()
             window = caloriePage()
