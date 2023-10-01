@@ -90,16 +90,19 @@ def main():
             calorie = calc_calorie(float(values["input_METs"]),
             float(handleTime(values["input_hour"],values["input_minute"])),
             float(status.weight))
-            logData.store_data(calorie)
-            cal_str = ""
-            for cal in logData.cal_data:
-                cal_str = cal_str + str(cal) + " kcal\n"
+
+            #ログに格納
+            score = 10
+            logData.store_data(calorie, score)
+            log_str = ""
+            for d in logData.cal_data:
+                log_str = log_str+ str(d[0]) + " kcal" + "  score: " + str(d[1]) + "\n"
             window["input_METs"].Update('')
             window["input_hour"].Update('')
             window["input_minute"].Update('')
             window["inst_time"].Update('運動時間を入力してください')
             window["inst_METs"].Update('運動強度(METs)を数値で入力してください')
-            window["result"].Update(cal_str)
+            window["result"].Update(log_str)
     window.close()
 
 if __name__ == "__main__":
