@@ -38,7 +38,7 @@ def signUpPage():
             ],
             [
                 sg.Text("性別"),
-                sg.InputText('', key='input_gender', enable_events=True,), 
+                sg.Combo(["男性","女性"], default_value="選択してください", key='input_gender', size=(30,1), enable_events=True,)
             ],
             #年齢入力
             [
@@ -113,7 +113,7 @@ def caloriePage():
 def main():
 
     #先程確認して決めたテーマカラーを設定
-    sg.theme('DarkBlue')
+    sg.theme('BlueMono')
 
     """
     ・sg.Imageで画像部品をのせられる
