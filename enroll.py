@@ -38,7 +38,7 @@ def signUpPage():
             ],
             [
                 sg.Text("性別"),
-                sg.Combo(["男性","女性"], default_value="選択してください", key='input_gender', size=(30,1), enable_events=True,)
+                sg.Combo(["男性","女性"], default_value="選択してください", key='input_gender', size=(30,1), enable_events=True,  readonly=True,)
             ],
             #年齢入力
             [
@@ -84,11 +84,11 @@ def caloriePage():
         [
             #MED入力
             [
-                sg.Text('運動強度を入力してください', font=('メイリオ',12))
+                sg.Text('運動強度(METs)を数値で入力してください', font=('メイリオ',12))
             ],
             [
-                sg.Text("運動強度"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,)
+                sg.Text("運動強度(METs)"),
+                sg.InputText('', key='input_METs', enable_events=True, size=(5,1))
             ],
             #運動時間入力
             [
@@ -96,8 +96,10 @@ def caloriePage():
             ],
             [
                 sg.Text("運動時間"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
-                sg.Text("時間")
+                sg.InputText('', key='input_hour', enable_events=True, size=(5,1)), 
+                sg.Text("時間"),
+                sg.InputText('', key='input_minite', enable_events=True,size=(5,1)), 
+                sg.Text("分")
             ],
             [
                 sg.Text("名前" + status.name),
