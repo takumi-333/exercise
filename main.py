@@ -5,6 +5,7 @@ from sign_up_page import signUpPage
 from calc_calorie import calc_calorie
 from log_background import log_data
 from calorieScore import CalorieScore
+from calorie_score_data import calorieData
 
 def handleTime(hour, minute):
     time = float(hour) + float(minute)/60
@@ -30,26 +31,18 @@ class Status():
 
 status = Status()
 logData = log_data()
+cd = calorieData()
 
 def main():
 
     #先程確認して決めたテーマカラーを設定
     sg.theme('BlueMono')
 
-    """
-    ・sg.Imageで画像部品をのせられる
-    ・sg.Textでテキスト部品をのせられる
-    ・sg.InputTextでテキスト入力エリアをのせる(画像Pathを表示させる部分)
-    ・sg.FileBrowseでWindowsでよく見るファイル選択画面を出せる(InputTextの横に置けばtextを自動入力してくれる)
-    ・sg.Submitはいわゆる「決定ボタン」。今回はOCR開始ボタンとして使った
-    ・sg.MLineはテキスト出力エリア
-    ・keyは、後でイベントを追加する時に参照する変数名
-    ・後は省略できるが、サイズやフォントも各命令で指定出来る
-    """
 
     #GUIタイトルと全体レイアウトをのせたWindowを定義する
     window = signUpPage()
-
+    window.Maximize()
+    goal = 0
     #GUI表示実行部分
     while True:
         # ウィンドウ表示
@@ -62,16 +55,22 @@ def main():
         elif event == "-enroll-":
             if not values["input_old"].isdigit():
                 window["input_old"].Update('')
+                window["inst_old"].Update('年齢を入力してください(数値じゃなければいけません)')
                 continue
             elif not values["input_height"].isdigit():
                 window["input_height"].Update('')
+                window["inst_height"].Update('身長を入力してください(数値じゃなければいけません)')
                 continue
             elif not values["input_weight"].isdigit():
                 window["input_weight"].Update('')
+                window["inst_weight"].Update('体重を入力してください(数値じゃなければいけません)')
                 continue
             status.set(values)
+            goal = cd.calorie_goal_score(status.gender,status.old)
             window.close()
             window = mainPage(status)
+            window.Maximize()
+            window["goal"].Update("Goal: " + str(goal) + " kcal")
         elif event == "-calcurate-":
             if not values["input_METs"].isdigit():
                 window["input_METs"].Update('')
@@ -91,7 +90,6 @@ def main():
             float(status.weight))
 
             #ログに格納
-            goal = 1000
             logData.store_data(calorie)
             score = CalorieScore(goal, logData.total_cal)
 

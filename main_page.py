@@ -36,6 +36,10 @@ def mainPage(status):
 
     frame2 = sg.Frame("今日のスコア",
         [
+            #目標スコア
+            [
+                sg.Text('Goal: ', font=('メイリオ',30),key="goal")
+            ],
             #Score
             [
                 sg.Text('Score: ', font=('メイリオ',30),key="score")
