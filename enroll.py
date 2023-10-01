@@ -1,5 +1,25 @@
 import PySimpleGUI as sg
+from enum import Enum
 
+class Gender(Enum):
+    Male = 1
+    Female = 2
+
+class Status():
+    name = ""
+    gender = Gender.Male
+    old = 20
+    height = 160.0
+    weight = 50.0
+
+    def set(self, values):
+        self.name = values["input_name"]
+        self.gender = values["input_gender"]
+        self.old = values["input_old"]
+        self.height = values["input_height"]
+        self.weight = values["input_weight"]
+
+status = Status()
 
 def signUpPage():
     frame1 = sg.Frame('',
@@ -10,7 +30,7 @@ def signUpPage():
             ],
             [
                 sg.Text("名前"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('', key='input_name', enable_events=True), 
             ],
             #性別入力
             [
@@ -18,7 +38,7 @@ def signUpPage():
             ],
             [
                 sg.Text("性別"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('', key='input_gender', enable_events=True,), 
             ],
             #年齢入力
             [
@@ -26,7 +46,7 @@ def signUpPage():
             ],
             [
                 sg.Text("年齢"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('', key='input_old', enable_events=True,), 
                 sg.Text("歳"),
             ],
             #身長入力
@@ -35,7 +55,7 @@ def signUpPage():
             ],
             [
                 sg.Text("身長"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('', key='input_height', enable_events=True,), 
                 sg.Text("cm")
             ],
             #体重入力
@@ -44,7 +64,7 @@ def signUpPage():
             ],
             [
                 sg.Text("体重"),
-                sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
+                sg.InputText('', key='input_weight', enable_events=True,), 
                 sg.Text("kg")
             ],
             #登録完了ボタン
@@ -78,6 +98,9 @@ def caloriePage():
                 sg.Text("運動時間"),
                 sg.InputText('', key='-INPUTTEXT-', enable_events=True,), 
                 sg.Text("時間")
+            ],
+            [
+                sg.Text("名前" + status.name)
             ]
         ], size=(1000, 700)
     )
@@ -115,9 +138,11 @@ def main():
         if event is None:
             print('exit')
             break
-        if event == "enroll":
+        elif event == "enroll":
+            status.set(values)
             window.close()
             window = caloriePage()
+        
 
 
     window.close()
