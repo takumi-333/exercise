@@ -5,7 +5,7 @@ def mainPage(status):
         [
             #MED入力
             [
-                sg.Text('運動強度(METs)を数値で入力してください', font=('メイリオ',20))
+                sg.Text('運動強度(METs)を数値で入力してください', font=('メイリオ',20),key="inst_METs")
             ],
             [
                 sg.Text("運動強度(METs)", font=('メイリオ',20)),
@@ -13,7 +13,7 @@ def mainPage(status):
             ],
             #運動時間入力
             [
-                sg.Text('運動時間を入力してください', font=('メイリオ',20))
+                sg.Text('運動時間を入力してください', font=('メイリオ',20),key="inst_time")
             ],
             [
                 sg.Text("運動時間", font=('メイリオ',20)),
