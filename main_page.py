@@ -31,7 +31,7 @@ def mainPage(status):
             [
                 sg.Text('', key="result"),
             ],
-        ], size=(700, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+        ], size=(500, 700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
 
     frame2 = sg.Frame('登録情報', 
@@ -51,7 +51,7 @@ def mainPage(status):
         [
             sg.Text("体重: " + status.weight, font=('メイリオ',20))
         ],
-    ], size=(700,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
+    ], size=(500,700),relief=sg.RELIEF_FLAT,font=('Noto Serif CJK JP',30)
     )
     layout =  [[frame1, frame2]]
     
