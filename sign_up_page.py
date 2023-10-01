@@ -1,6 +1,5 @@
 import PySimpleGUI as sg
 
-
 def signUpPage():
     frame1 = sg.Frame('',
         [
@@ -52,7 +51,7 @@ def signUpPage():
                 sg.Submit(button_text='登録',
                         font=('メイリオ',8),size=(8,3),key='-enroll-')
             ]
-        ], size=(1000, 700),relief=sg.RELIEF_FLAT
+        ], size=(1400, 700),relief=sg.RELIEF_FLAT
     )
 
     layout =  [[frame1]]

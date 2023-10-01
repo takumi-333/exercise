@@ -72,12 +72,26 @@ def main():
             window.close()
             window = mainPage(status)
         elif event == "-calcurate-":
-            print(type(values["input_METs"]))
-            print(values["input_hour"])
-            print(values["input_minute"])
+            if not values["input_METs"].isdigit():
+                window["input_METs"].Update('')
+                window["inst_METs"].Update('運動強度(METs)を数値で入力してください(数値じゃなければいけません)')
+                continue
+            elif not values["input_hour"].isdigit():
+                window["input_hour"].Update('')
+                window["inst_time"].Update('運動時間を入力してください(整数じゃなければいけません)')
+                continue
+            elif not values["input_minute"].isdigit():
+                window["input_minute"].Update('')
+                window["inst_time"].Update('運動時間を入力してください(整数じゃなければいけません)')
+                continue
+            #カロリー計算
             calorie = calc_calorie(float(values["input_METs"]),
             float(handleTime(values["input_hour"],values["input_minute"])),
             float(status.weight))
+
+            window["input_METs"].Update('')
+            window["input_hour"].Update('')
+            window["input_minute"].Update('')
             window["result"].Update(str(calorie) + ' kcal')
     window.close()
 
