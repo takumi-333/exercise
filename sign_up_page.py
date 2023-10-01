@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 def signUpPage():
     frame1 = sg.Frame('',
         [

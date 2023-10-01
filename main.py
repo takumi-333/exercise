@@ -1,6 +1,11 @@
 import PySimpleGUI as sg
 from main_page import mainPage
 from sign_up_page import signUpPage
+from calc_calorie import calc_calorie
+
+def handleTime(hour, minute):
+    time = float(hour) + float(minute)/60
+    return time
 
 class Status():
     name = "名無さん"
@@ -67,7 +72,13 @@ def main():
             window.close()
             window = mainPage(status)
         elif event == "-calcurate-":
-            window["result"].Update('100 kcal')
+            print(type(values["input_METs"]))
+            print(values["input_hour"])
+            print(values["input_minute"])
+            calorie = calc_calorie(float(values["input_METs"]),
+            float(handleTime(values["input_hour"],values["input_minute"])),
+            float(status.weight))
+            window["result"].Update(str(calorie) + ' kcal')
     window.close()
 
 if __name__ == "__main__":

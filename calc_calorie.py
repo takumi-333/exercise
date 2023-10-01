@@ -1,5 +1,8 @@
+import math
+
 def calc_calorie(mets,time,weight):
 
-    c_calorie = mets*time*weight*1.05
+    calorie = mets*time*weight*1.05
+    calorie = math.floor(calorie * 10) / 10
 
-    return c_calorie
+    return calorie
